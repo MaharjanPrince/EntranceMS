@@ -224,8 +224,6 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 });
 
 
-<<<<<<< HEAD
-
 
 
 // Call loadProgress when the page loads
@@ -233,14 +231,11 @@ window.onload = function () {
     let questionNum = loadProgress();
     // Load and display the question based on questionNum
 };
-=======
 // // Call loadProgress when the page loads
 // window.onload = function () {
 //     let questionNum = loadProgress();
 //     // Load and display the question based on questionNum
 // };
->>>>>>> 29ed5b360f1aad7928d1db75cf25020f8f47eba6
-
 
 //make submit button visible when user gets pass 80 questions
 document.addEventListener('DOMContentLoaded', function () {
@@ -260,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-<<<<<<< HEAD
 // making the attempted questions work 
 let attemptedQuestions = 0;
 const nextButton = document.getElementById('next');
@@ -281,7 +275,6 @@ nextButton.addEventListener('click', function () {
 
     }
 });
-=======
 
 // auto submit
 setTimeout(sendMarks,.5 * 60 * 60 * 1000);
@@ -292,4 +285,3 @@ let submitStr = document.getElementById('next').textContent;
         return "Data will be lost if you leave the page, are you sure?";
     };
 }
->>>>>>> 29ed5b360f1aad7928d1db75cf25020f8f47eba6
