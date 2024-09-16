@@ -104,13 +104,16 @@ if ($result->num_rows > 0) {
             </div>
 
             <!-- other buttons -->
-            <div class="row ps-2 pt-3 pe-2" >
-                    <a class="col me-1" href="resultView.php"><button class=" btn btn-lg btn-primary" id="viewResult" >View Result</button></a>
-                    <a href = "logout.php"><button class="col btn btn-lg btn-primary" id="logout" >Logout</button></a>
+            <div class="row ps-2 pt-3 pe-2 ">
+                <a class="col me-1 d-grid" href="resultView.php"><button class=" btn btn-lg btn-primary" id="viewResult">View
+                        Result</button></a>
+                <form action="logout.php" method="POST" class="col d-grid">
+                    <button type="submit" class="btn btn-lg btn-danger">Logout</button>
+                    </form>
             </div>
         </div>
     </div>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
@@ -178,7 +181,7 @@ if ($result->num_rows > 0) {
 
             </ul>
         </ul>
-    </aside> 
+    </aside>
 </body>
 
 </html>

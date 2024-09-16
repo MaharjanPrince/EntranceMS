@@ -4,6 +4,7 @@ let totalQuestions = 10;
 
 
 
+
 // this is fetching question from exam.php
 
 // fetching question and converting to json format
@@ -44,18 +45,18 @@ questionUpdater();
 
 
 function optionsCreator() {
-    Array.from(options).forEach((element) => {
-        if (element.classList.contains("correct")) {
-            element.classList.remove('correct');
-        }
-    });
+    // Array.from(options).forEach((element) => {
+    //         element.classList.remove('correct');
+    //     }if (element.classList.contains("correct")) {
+        
+    // });
 
     Array.from(options).forEach((element, index) => {
         element.innerText = questionObj.options[`option${index + 1}`];
-        if (element.innerText.includes("#$")) {
-            element.innerText = element.innerText.slice(0, element.innerText.length - 2);
-            element.classList.add('correct');
-        }
+        // if (element.innerText.includes("#$")) {
+        //     element.innerText = element.innerText.slice(0, element.innerText.length - 2);
+        //     element.classList.add('correct');
+        // }
     });
 
     const storedValue = localStorage.getItem(`qid${questionCounter}`);
@@ -77,35 +78,40 @@ nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
 
+function sendMarks(){
+    // Number to be sent to the server
+    let resultData = {
+        "marks": correctedProgress.length
+    }
+
+
+
+    fetch('/entrancems/exampage/partials/_handle_submission.php', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": JSON.stringify(resultData)
+    })
+        .then(response => response.text())
+        .then(result => {
+            console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+}
+
 function submit() {
     if (confirm("are you sure?")) {
-        // Number to be sent to the server
-        let resultData = {
-            "marks": correctedProgress.length
-        }
-
-
-
-        fetch('/entrancems/exampage/partials/_handle_submission.php', {
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            "body": JSON.stringify(resultData)
-        })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Success:', result);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
+        sendMarks();
         // console.log("pressed confirm");
     }
     else {
         console.log("canceled");
     }
+    window.location.replace("submitted.html");
 }
 
 // next to submit button 
@@ -218,6 +224,7 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 });
 
 
+<<<<<<< HEAD
 
 
 
@@ -226,6 +233,13 @@ window.onload = function () {
     let questionNum = loadProgress();
     // Load and display the question based on questionNum
 };
+=======
+// // Call loadProgress when the page loads
+// window.onload = function () {
+//     let questionNum = loadProgress();
+//     // Load and display the question based on questionNum
+// };
+>>>>>>> 29ed5b360f1aad7928d1db75cf25020f8f47eba6
 
 
 //make submit button visible when user gets pass 80 questions
@@ -246,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+<<<<<<< HEAD
 // making the attempted questions work 
 let attemptedQuestions = 0;
 const nextButton = document.getElementById('next');
@@ -266,3 +281,15 @@ nextButton.addEventListener('click', function () {
 
     }
 });
+=======
+
+// auto submit
+setTimeout(sendMarks,.5 * 60 * 60 * 1000);
+
+let submitStr = document.getElementById('next').textContent;
+        if (submitStr !== "Submit"){
+    window.onbeforeunload = function () {
+        return "Data will be lost if you leave the page, are you sure?";
+    };
+}
+>>>>>>> 29ed5b360f1aad7928d1db75cf25020f8f47eba6
